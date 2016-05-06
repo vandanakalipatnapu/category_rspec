@@ -1,0 +1,36 @@
+<div class="container">
+	<center><h2 class="text-danger"><%= @post.title %></h2></center>
+	<hr/>
+	<h3 class="text-info">Categoty: <%= @post.category %></h3><br/>
+
+	
+	<center><h3 class="text-danger">Add Comment</h3></center>
+	<div class="form-horizontal">
+		<%= form_for ([@post,@comment]) do |c| %>
+			<div class="form-group">
+					<%= c.label :description,class:"control-label col-sm-4"%>
+				<div class="col-sm-4">
+					<%= c.text_area :description,class:"form-control"%>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<%= c.submit "Save",class:"col-sm-offset-4 btn btn-sm btn-info"%>
+				<%= link_to "All Posts",posts_path,class:"btn btn-sm btn-info col-sm-offset-0"%>
+			</div>	
+
+		<% end %>
+	</div>
+
+	
+	<h3 class="text-danger">Comments</h3>
+	<hr/>
+	<h4><% @post.comments.each do |comment| %>
+		<%= comment.id %>.
+		<%= comment.description %><br/></h4>
+		|<%= link_to "Delete",[comment.post,comment],method: :destroy,data:{:confirm => "Are you sure want to delete?"}%>
+		<h4><br/><hr/>
+	<%end%></h4>
+
+
+</div>

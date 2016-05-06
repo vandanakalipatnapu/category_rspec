@@ -1,0 +1,15 @@
+<div class="container">
+	<center><h2 class="text-danger">Total Posts</h2></center>
+	<hr/>
+
+	<% @posts.each do |post| %>
+		<h3><%= link_to post.title,post %></h3>
+		<div class="text-success">Category:<%= post.category %></div>
+		<div class="text-success">Description:</div>
+		<%= post.description %><br/>
+		<%= link_to "Edit",edit_post_path(post)%> | 
+		<%= link_to "Delete",post,method: :destroy,data:{confirm:"Are sure want to delete?"} %>
+		<hr/>
+	<% end %>
+	<%= link_to "New Post",new_post_path,class:"btn btn-sm btn-info"%>
+</div>
